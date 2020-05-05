@@ -49,22 +49,35 @@ class App extends Component {
       cursor: 'pointer'
     };
 
+    let persons = null;
+    let toggleLabel = "Show People";
+
+    if (this.state.showPersons) {
+
+      toggleLabel = "Hide people";
+
+      persons = (
+        <div>
+          <Person onClick={() => this.switchNameHandler('Superman')}
+            name={this.state.persons[0].name} />
+          <Person name={this.state.persons[1].name} />
+          <Person changed={this.nameChangeHandler} name={this.state.persons[2].name} />
+        </div>
+
+      )
+    }
+
+
 
     return (
       <div className="App">
         <header className="App-header">
 
           <button style={buttonStyle}
-            onClick={this.togglePersons}>{this.state.showPersons ? "Hide People" : "Show people"}</button>
-
-          {this.state.showPersons ? <div>
-            <Person onClick={() => this.switchNameHandler('Superman')}
-              name={this.state.persons[0].name} />
-            <Person name={this.state.persons[1].name} />
-            <Person changed={this.nameChangeHandler} name={this.state.persons[2].name} />
-
-          </div>
-            : null}
+            onClick={this.togglePersons}>
+              {toggleLabel} 
+          </button>
+          {persons}
           <h1>My react app</h1>
           <img src={logo} className="App-logo" alt="logo" />
         </header>
