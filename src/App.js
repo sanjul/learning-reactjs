@@ -14,10 +14,10 @@ class App extends Component {
     ]
   };
 
-  switchNameHandler = () => {
+  switchNameHandler = (newName) => {
 
-    const newstate = {...this.state};
-    newstate.persons[0].name="Batman";
+    const newstate = { ...this.state };
+    newstate.persons[0].name = newName;
 
     this.setState(newstate);
   }
@@ -27,9 +27,10 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
 
-          <button onClick={this.switchNameHandler}>Click me</button>
+          <button onClick={this.switchNameHandler.bind(this, 'Batman')}>Click me</button>
 
-          <Person name={this.state.persons[0].name} />
+          <Person onClick={() => this.switchNameHandler('Superman')}
+            name={this.state.persons[0].name} />
           <Person name={this.state.persons[1].name} />
           <Person name={this.state.persons[2].name} />
 

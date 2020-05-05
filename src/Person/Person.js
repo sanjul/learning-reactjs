@@ -8,7 +8,7 @@ const person = (props) => {
     }
 
     return (
-        <div>
+        <div onClick={props.onClick}>
             <p>Hello from {Math.floor(Math.random() * 30)} year old {props.name}!</p>
             {/* <div>Children:
                 <div style={childStyle}>{props.children}</div>
