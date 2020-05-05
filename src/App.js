@@ -30,12 +30,26 @@ class App extends Component {
 
   }
 
+
   render() {
+
+    // properties can also be snake case, just quote it
+    // for example 'background-color' is valid
+    const buttonStyle = {
+      backgroundColor: 'green',
+      border : '1px solid yellow',
+      color : 'yellow',
+      padding: '5px 20px',
+      cursor: 'pointer'
+    };
+
+
     return (
       <div className="App">
         <header className="App-header">
 
-          <button onClick={this.switchNameHandler.bind(this, 'Batman')}>Click me</button>
+          <button style={buttonStyle}
+            onClick={this.switchNameHandler.bind(this, 'Batman')}>Click me</button>
 
           <Person onClick={() => this.switchNameHandler('Superman')}
             name={this.state.persons[0].name} />
