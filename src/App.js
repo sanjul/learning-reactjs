@@ -14,13 +14,6 @@ class App extends Component {
     showPersons: false
   };
 
-  switchNameHandler = (newName) => {
-
-    const newstate = { ...this.state };
-    newstate.persons[0].name = newName;
-
-    this.setState(newstate);
-  }
 
   nameChangeHandler = (event) => {
     const newState = { ...this.state };
@@ -33,6 +26,12 @@ class App extends Component {
   togglePersons = () => {
     // remember, setState() merges properties
     this.setState({ showPersons: !this.state.showPersons })
+  }
+
+  deletePerson = (personIndex) => {
+    const persons = this.state.persons;
+    persons.splice(personIndex, 1);
+    this.setState({ persons: persons });
   }
 
 
@@ -57,10 +56,11 @@ class App extends Component {
 
       persons = (
         <div>
-          {this.state.persons.map(p => {
+          {this.state.persons.map((p, index) => {
             return (
               <Person
                 name={p.name}
+                onDelete={this.deletePerson.bind(this, index)}
                 changed={this.nameChangeHandler} />)
           })}
         </div>

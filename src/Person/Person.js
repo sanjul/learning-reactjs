@@ -3,8 +3,15 @@ import './Person.css';
 
 const person = (props) => {
 
+    const delStyle = {
+        color:'red',
+        fontSize : '10px',
+        cursor: 'pointer'
+    };
+
     return (
         <div onClick={props.onClick} className="Person">
+            <span style={delStyle} onClick={props.onDelete}>Delete</span>
             <p>Hello from {Math.floor(Math.random() * 30)} year old {props.name}!</p>
             <input onChange={props.changed} type="text" value={props.name}/>
         </div>
