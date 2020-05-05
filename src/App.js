@@ -3,23 +3,37 @@ import logo from './logo.svg';
 import './App.css';
 import Person from './Person/Person'
 import { render } from '@testing-library/react';
+import person from './Person/Person';
 
 class App extends Component {
 
   state = {
     persons: [
-      { name: "Lue", child: 2 },
-      { name: "Joy" },
+      { id: 'id1', name: "Lue", child: 2 },
+      { id: 'id2', name: "Joy" },
+      { id: 'id3', name: "Jacob" },
     ],
     showPersons: false
   };
 
 
-  nameChangeHandler = (event) => {
-    const newState = { ...this.state };
-    newState.persons[0].name = event.target.value;
+  nameChangeHandler = (event, id) => {
 
-    this.setState(newState);
+    // can also use find
+    const pIndex = this.state.persons.findIndex((p) => p.id == id);
+    
+    // using spread operator to clone the person object
+    // we can also use following to clone
+    // newobj = Object.assign({}, orig)
+    const person = {...this.state.persons[pIndex]};
+    person.name = event.target.value;
+
+    // clone the array
+    const persons = [...this.state.persons];
+    persons[pIndex] = person;
+
+    // this will merge with old state
+    this.setState({persons:persons});
 
   }
 
@@ -59,9 +73,10 @@ class App extends Component {
           {this.state.persons.map((p, index) => {
             return (
               <Person
+                key={person.id}
                 name={p.name}
                 onDelete={this.deletePerson.bind(this, index)}
-                changed={this.nameChangeHandler} />)
+                changed={(event) => this.nameChangeHandler(event,p.id)} />)
           })}
         </div>
       )
