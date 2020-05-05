@@ -22,6 +22,14 @@ class App extends Component {
     this.setState(newstate);
   }
 
+  nameChangeHandler = (event) => {
+    const newState = {...this.state};
+    newState.persons[2].name = event.target.value;
+
+    this.setState(newState);
+
+  }
+
   render() {
     return (
       <div className="App">
@@ -32,7 +40,7 @@ class App extends Component {
           <Person onClick={() => this.switchNameHandler('Superman')}
             name={this.state.persons[0].name} />
           <Person name={this.state.persons[1].name} />
-          <Person name={this.state.persons[2].name} />
+          <Person changed={this.nameChangeHandler} name={this.state.persons[2].name} />
 
           <h1>My react app</h1>
           <img src={logo} className="App-logo" alt="logo" />
