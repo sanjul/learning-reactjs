@@ -9,8 +9,7 @@ class App extends Component {
   state = {
     persons: [
       { name: "Lue", child: 2 },
-      { name: "Boo" },
-      { name: "Jacob" }
+      { name: "Joy" },
     ],
     showPersons: false
   };
@@ -25,7 +24,7 @@ class App extends Component {
 
   nameChangeHandler = (event) => {
     const newState = { ...this.state };
-    newState.persons[2].name = event.target.value;
+    newState.persons[0].name = event.target.value;
 
     this.setState(newState);
 
@@ -58,13 +57,24 @@ class App extends Component {
 
       persons = (
         <div>
-          <Person onClick={() => this.switchNameHandler('Superman')}
-            name={this.state.persons[0].name} />
-          <Person name={this.state.persons[1].name} />
-          <Person changed={this.nameChangeHandler} name={this.state.persons[2].name} />
+          {this.state.persons.map(p => {
+            return (
+              <Person
+                name={p.name}
+                changed={this.nameChangeHandler} />)
+          })}
         </div>
-
       )
+
+      // persons = (
+      //   <div>
+      //     <Person onClick={() => this.switchNameHandler('Superman')}
+      //       name={this.state.persons[0].name} />
+      //     <Person name={this.state.persons[1].name} />
+      //     <Person changed={this.nameChangeHandler} name={this.state.persons[2].name} />
+      //   </div>
+
+      // )
     }
 
 
@@ -75,7 +85,7 @@ class App extends Component {
 
           <button style={buttonStyle}
             onClick={this.togglePersons}>
-              {toggleLabel} 
+            {toggleLabel}
           </button>
           {persons}
           <h1>My react app</h1>
