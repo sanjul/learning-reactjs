@@ -21,11 +21,11 @@ class App extends Component {
 
     // can also use find
     const pIndex = this.state.persons.findIndex((p) => p.id == id);
-    
+
     // using spread operator to clone the person object
     // we can also use following to clone
     // newobj = Object.assign({}, orig)
-    const person = {...this.state.persons[pIndex]};
+    const person = { ...this.state.persons[pIndex] };
     person.name = event.target.value;
 
     // clone the array
@@ -33,7 +33,7 @@ class App extends Component {
     persons[pIndex] = person;
 
     // this will merge with old state
-    this.setState({persons:persons});
+    this.setState({ persons: persons });
 
   }
 
@@ -77,7 +77,7 @@ class App extends Component {
                 name={p.name}
                 age={p.age}
                 onDelete={this.deletePerson.bind(this, index)}
-                changed={(event) => this.nameChangeHandler(event,p.id)} />)
+                changed={(event) => this.nameChangeHandler(event, p.id)} />)
           })}
         </div>
       )
@@ -89,15 +89,17 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-
+          <h1>My react app</h1>
+          <img src={logo} className="App-logo" alt="logo" />
+        </header>
+        <div>
           <button style={buttonStyle}
             onClick={this.togglePersons}>
             {toggleLabel}
           </button>
           {persons}
-          <h1>My react app</h1>
-          <img src={logo} className="App-logo" alt="logo" />
-        </header>
+        </div>
+
       </div>
     );
   }

@@ -12,7 +12,7 @@ const person = (props) => {
     return (
         <div onClick={props.onClick} className="Person">
             <span style={delStyle} onClick={props.onDelete}>Delete</span>
-            <p>Hello from {props.age} year old {props.name}!</p>
+            <p>Hello from {props.age} year old <b>{props.name}!</b></p>
             <input onChange={props.changed} type="text" value={props.name}/>
         </div>
     )
