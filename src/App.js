@@ -9,9 +9,9 @@ class App extends Component {
 
   state = {
     persons: [
-      { id: 'id1', name: "Lue", child: 2 },
-      { id: 'id2', name: "Joy" },
-      { id: 'id3', name: "Jacob" },
+      { id: 'id1', name: "Lue", age: 20 },
+      { id: 'id2', name: "Joy", age: 30 },
+      { id: 'id3', name: "Jacob", age: 25 },
     ],
     showPersons: false
   };
@@ -75,21 +75,13 @@ class App extends Component {
               <Person
                 key={person.id}
                 name={p.name}
+                age={p.age}
                 onDelete={this.deletePerson.bind(this, index)}
                 changed={(event) => this.nameChangeHandler(event,p.id)} />)
           })}
         </div>
       )
 
-      // persons = (
-      //   <div>
-      //     <Person onClick={() => this.switchNameHandler('Superman')}
-      //       name={this.state.persons[0].name} />
-      //     <Person name={this.state.persons[1].name} />
-      //     <Person changed={this.nameChangeHandler} name={this.state.persons[2].name} />
-      //   </div>
-
-      // )
     }
 
 
