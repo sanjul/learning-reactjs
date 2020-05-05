@@ -11,7 +11,8 @@ class App extends Component {
       { name: "Lue", child: 2 },
       { name: "Boo" },
       { name: "Jacob" }
-    ]
+    ],
+    showPersons: false
   };
 
   switchNameHandler = (newName) => {
@@ -23,11 +24,16 @@ class App extends Component {
   }
 
   nameChangeHandler = (event) => {
-    const newState = {...this.state};
+    const newState = { ...this.state };
     newState.persons[2].name = event.target.value;
 
     this.setState(newState);
 
+  }
+
+  togglePersons = () => {
+    // remember, setState() merges properties
+    this.setState({ showPersons: !this.state.showPersons })
   }
 
 
@@ -37,8 +43,8 @@ class App extends Component {
     // for example 'background-color' is valid
     const buttonStyle = {
       backgroundColor: 'green',
-      border : '1px solid yellow',
-      color : 'yellow',
+      border: '1px solid yellow',
+      color: 'yellow',
       padding: '5px 20px',
       cursor: 'pointer'
     };
@@ -49,13 +55,16 @@ class App extends Component {
         <header className="App-header">
 
           <button style={buttonStyle}
-            onClick={this.switchNameHandler.bind(this, 'Batman')}>Click me</button>
+            onClick={this.togglePersons}>{this.state.showPersons ? "Hide People" : "Show people"}</button>
 
-          <Person onClick={() => this.switchNameHandler('Superman')}
-            name={this.state.persons[0].name} />
-          <Person name={this.state.persons[1].name} />
-          <Person changed={this.nameChangeHandler} name={this.state.persons[2].name} />
+          {this.state.showPersons ? <div>
+            <Person onClick={() => this.switchNameHandler('Superman')}
+              name={this.state.persons[0].name} />
+            <Person name={this.state.persons[1].name} />
+            <Person changed={this.nameChangeHandler} name={this.state.persons[2].name} />
 
+          </div>
+            : null}
           <h1>My react app</h1>
           <img src={logo} className="App-logo" alt="logo" />
         </header>
