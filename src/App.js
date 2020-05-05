@@ -67,6 +67,7 @@ class App extends Component {
     if (this.state.showPersons) {
 
       toggleLabel = "Hide people";
+      buttonStyle.backgroundColor = 'darkgreen';
 
       persons = (
         <div>
