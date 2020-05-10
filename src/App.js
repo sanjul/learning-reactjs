@@ -5,6 +5,20 @@ import { render } from '@testing-library/react';
 import Person from './Person/Person';
 import styled from 'styled-components';
 
+
+const StyledButton = styled.button`
+      background-color: ${props => props.alt ? 'darkgreen': 'green'};
+      border: 1px solid yellow;
+      color: yellow;
+      padding: 5px 20px;
+      cursor: pointer;
+      &:hover {
+        background-color: ${props => props.alt? '#F003': 'lightgreen'};
+        color: ${props => props.alt? 'red': 'green'};
+      }
+`;
+
+
 class App extends Component {
 
   state = {
@@ -51,31 +65,11 @@ class App extends Component {
 
   render() {
 
-    // properties can also be snake case, just quote it
-    // for example 'background-color' is valid
-    const buttonStyle = {
-      backgroundColor: 'green',
-      border: '1px solid yellow',
-      color: 'yellow',
-      padding: '5px 20px',
-      cursor: 'pointer',
-      ':hover': {
-        backgroundColor: 'lightgreen',
-        color: 'green'
-      }
-    };
 
     let persons = null;
     let toggleLabel = "Show People";
 
     if (this.state.showPersons) {
-
-      toggleLabel = "Hide people";
-      buttonStyle.backgroundColor = 'darkgreen';
-      buttonStyle[':hover'] = {
-        backgroundColor: '#F003',
-        color: 'red'
-      }
 
       persons = (
         <div>
@@ -96,20 +90,20 @@ class App extends Component {
 
 
     return (
-        <div className="App">
-          <header className="App-header">
-            <h1>My react app</h1>
-            <img src={logo} className="App-logo" alt="logo" />
-          </header>
-          <div>
-            <button style={buttonStyle}
-              onClick={this.togglePersons}>
-              {toggleLabel}
-            </button>
-            {persons}
-          </div>
-
+      <div className="App">
+        <header className="App-header">
+          <h1>My react app</h1>
+          <img src={logo} className="App-logo" alt="logo" />
+        </header>
+        <div>
+          <StyledButton alt={this.state.showPersons}
+            onClick={this.togglePersons}>
+            {toggleLabel}
+          </StyledButton>
+          {persons}
         </div>
+
+      </div>
     );
   }
 
