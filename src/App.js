@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Radium from 'radium';
 import Person from './Person/Person'
 import { render } from '@testing-library/react';
 import person from './Person/Person';
@@ -58,7 +59,11 @@ class App extends Component {
       border: '1px solid yellow',
       color: 'yellow',
       padding: '5px 20px',
-      cursor: 'pointer'
+      cursor: 'pointer',
+      ':hover': {
+        backgroundColor: 'lightgreen',
+        color: 'green'
+      }
     };
 
     let persons = null;
@@ -68,6 +73,10 @@ class App extends Component {
 
       toggleLabel = "Hide people";
       buttonStyle.backgroundColor = 'darkgreen';
+      buttonStyle[':hover'] = {
+        backgroundColor: '#F003',
+        color: 'red'
+      }
 
       persons = (
         <div>
@@ -108,4 +117,4 @@ class App extends Component {
 }
 
 
-export default App;
+export default Radium(App);
