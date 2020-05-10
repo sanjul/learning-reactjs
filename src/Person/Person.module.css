@@ -1,4 +1,5 @@
 .Person {
+    position: relative;
     width: 60%;
     margin: 15px auto;
     border: 1px solid #162846;
@@ -12,4 +13,19 @@
     .Person {
         width: 450px;
     }
+}
+
+.DeleteButton{
+    color:red;
+    font-size : 10px;
+    cursor: pointer;
+    background-color: transparent;
+    border: 1px solid red;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.DeleteButton:hover {
+    box-shadow: 2px 3px 5px black;
 }
