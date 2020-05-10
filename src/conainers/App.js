@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import logo from '../assets/logo.svg';
 import Persons from '../components/Persons/Persons';
-import classes from './App.module.css'
+import classes from './App.module.css';
+import Cockpit from './Cockpit/Cockpit';
+import DisplayToggle from '../components/DisplayToggle/DisplayToggle';
 
 
 
@@ -13,8 +14,7 @@ class App extends Component {
       { id: 'id1', name: "Lue", age: 20 },
       { id: 'id2', name: "Joy", age: 30 },
       { id: 'id3', name: "Jacob", age: 25 },
-    ],
-    showPersons: false
+    ]
   };
 
 
@@ -38,10 +38,6 @@ class App extends Component {
 
   }
 
-  togglePersons = () => {
-    // remember, setState() merges properties
-    this.setState({ showPersons: !this.state.showPersons })
-  }
 
   deletePerson = (personIndex) => {
     const persons = [...this.state.persons];
@@ -51,41 +47,16 @@ class App extends Component {
 
 
   render() {
-
-
-    let persons = null;
-    let toggleLabel = "Show People";
-    let buttonClasses = [classes.Button];
-
-    if (this.state.showPersons) {
-
-      persons = <Persons persons={this.state.persons}
-        onDelete={this.deletePerson}
-        onChange={this.nameChangeHandler}/>
-
-      buttonClasses.push(classes.Alt);
-
-    }
-
-
-
     return (
       <div className={classes.App}>
-        <header className={classes.AppHeader}>
-          <h1>My react app</h1>
-          <img src={logo} className={classes.AppLogo} alt="logo" />
-        </header>
-        <div className={classes.AppBody}>
-          <button className={buttonClasses.join(' ')}
-            onClick={this.togglePersons}>
-            {toggleLabel}
-          </button>
-          {persons}
-        </div>
-        <footer className={classes.AppFooter}>
-          <span>(c) {new Date().getFullYear()}</span>
-        </footer>
+        <Cockpit>
+          <DisplayToggle objname="Persons">
+            <Persons persons={this.state.persons}
+              onDelete={this.deletePerson}
+              onChange={this.nameChangeHandler} />
+          </DisplayToggle>
 
+        </Cockpit>
       </div>
     );
   }

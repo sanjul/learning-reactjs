@@ -1,0 +1,24 @@
+.Toggle {
+    border: 1px solid yellow;
+    padding: 5px 20px;
+    cursor: pointer;
+}
+
+.Toggle.Visible {
+    background-color: green;
+    color: yellow;
+}
+
+.Toggle.Visible:hover {
+    background-color: lightgreen;
+    color: green;
+}
+
+.Toggle.Hidden {
+    background-color: darkgreen;
+}
+
+.Toggle.Hidden:hover {
+    background-color: #F003;
+    color: red;
+}
