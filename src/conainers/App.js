@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import Person from './Person/Person';
+import logo from '../assets/logo.svg';
+import Persons from '../components/Persons/Persons';
 import classes from './App.module.css'
+
 
 
 
@@ -58,19 +59,9 @@ class App extends Component {
 
     if (this.state.showPersons) {
 
-      persons = (
-        <div>
-          {this.state.persons.map((p, index) => {
-            return (
-              <Person
-                key={p.id}
-                name={p.name}
-                age={p.age}
-                onDelete={this.deletePerson.bind(this, index)}
-                changed={(event) => this.nameChangeHandler(event, p.id)} />)
-          })}
-        </div>
-      )
+      persons = <Persons persons={this.state.persons}
+        onDelete={this.deletePerson}
+        onChange={this.nameChangeHandler}/>
 
       buttonClasses.push(classes.Alt);
 
