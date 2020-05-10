@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Radium, { StyleRoot } from 'radium';
-import Person from './Person/Person'
 import { render } from '@testing-library/react';
-import person from './Person/Person';
+import Person from './Person/Person';
+import styled from 'styled-components';
 
 class App extends Component {
 
@@ -83,7 +82,7 @@ class App extends Component {
           {this.state.persons.map((p, index) => {
             return (
               <Person
-                key={person.id}
+                key={p.id}
                 name={p.name}
                 age={p.age}
                 onDelete={this.deletePerson.bind(this, index)}
@@ -97,7 +96,6 @@ class App extends Component {
 
 
     return (
-      <StyleRoot>
         <div className="App">
           <header className="App-header">
             <h1>My react app</h1>
@@ -112,11 +110,10 @@ class App extends Component {
           </div>
 
         </div>
-      </StyleRoot>
     );
   }
 
 }
 
 
-export default Radium(App);
+export default App;
