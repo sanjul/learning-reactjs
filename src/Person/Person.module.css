@@ -5,5 +5,11 @@
     box-shadow: 0 2px 15px #162846;
     padding: 16px;
     text-align: center;
-    background-color:#32363d;
+    background-color: #32363d;
+}
+
+@media (min-width: 500px) {
+    .Person {
+        width: 450px;
+    }
 }
