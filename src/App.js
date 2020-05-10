@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Radium from 'radium';
+import Radium, { StyleRoot } from 'radium';
 import Person from './Person/Person'
 import { render } from '@testing-library/react';
 import person from './Person/Person';
@@ -97,20 +97,22 @@ class App extends Component {
 
 
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1>My react app</h1>
-          <img src={logo} className="App-logo" alt="logo" />
-        </header>
-        <div>
-          <button style={buttonStyle}
-            onClick={this.togglePersons}>
-            {toggleLabel}
-          </button>
-          {persons}
-        </div>
+      <StyleRoot>
+        <div className="App">
+          <header className="App-header">
+            <h1>My react app</h1>
+            <img src={logo} className="App-logo" alt="logo" />
+          </header>
+          <div>
+            <button style={buttonStyle}
+              onClick={this.togglePersons}>
+              {toggleLabel}
+            </button>
+            {persons}
+          </div>
 
-      </div>
+        </div>
+      </StyleRoot>
     );
   }
 
