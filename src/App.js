@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import './App.css';
 import { render } from '@testing-library/react';
 import Person from './Person/Person';
 import styled from 'styled-components';
+import classes from './App.module.css'
 
 
 const StyledButton = styled.button`
@@ -90,18 +90,21 @@ class App extends Component {
 
 
     return (
-      <div className="App">
-        <header className="App-header">
+      <div className={classes.App}>
+        <header className={classes.AppHeader}>
           <h1>My react app</h1>
-          <img src={logo} className="App-logo" alt="logo" />
+          <img src={logo} className={classes.AppLogo} alt="logo" />
         </header>
-        <div>
+        <div className={classes.AppBody}>
           <StyledButton alt={this.state.showPersons}
             onClick={this.togglePersons}>
             {toggleLabel}
           </StyledButton>
           {persons}
         </div>
+        <footer class={classes.AppFooter}>
+          <span>(c) {new Date().getFullYear()}</span>
+        </footer>
 
       </div>
     );
