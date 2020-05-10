@@ -55,3 +55,26 @@
   color: #61dafb;
 }
 
+
+
+.App .Button{
+  background-color: green;
+  border: 1px solid yellow;
+  color: yellow;
+  padding: 5px 20px;
+  cursor: pointer;
+}
+
+.App .Button:hover {
+    background-color: lightgreen;
+    color: green;
+}
+
+.App .Button.Alt{
+  background-color: darkgreen;
+}
+
+.App .Button.Alt:hover{
+  background-color : #F003;
+  color: red;
+}

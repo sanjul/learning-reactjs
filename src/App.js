@@ -1,22 +1,8 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import { render } from '@testing-library/react';
 import Person from './Person/Person';
-import styled from 'styled-components';
 import classes from './App.module.css'
 
-
-const StyledButton = styled.button`
-      background-color: ${props => props.alt ? 'darkgreen': 'green'};
-      border: 1px solid yellow;
-      color: yellow;
-      padding: 5px 20px;
-      cursor: pointer;
-      &:hover {
-        background-color: ${props => props.alt? '#F003': 'lightgreen'};
-        color: ${props => props.alt? 'red': 'green'};
-      }
-`;
 
 
 class App extends Component {
@@ -34,7 +20,7 @@ class App extends Component {
   nameChangeHandler = (event, id) => {
 
     // can also use find
-    const pIndex = this.state.persons.findIndex((p) => p.id == id);
+    const pIndex = this.state.persons.findIndex((p) => p.id === id);
 
     // using spread operator to clone the person object
     // we can also use following to clone
@@ -68,6 +54,7 @@ class App extends Component {
 
     let persons = null;
     let toggleLabel = "Show People";
+    let buttonClasses = [classes.Button];
 
     if (this.state.showPersons) {
 
@@ -85,6 +72,8 @@ class App extends Component {
         </div>
       )
 
+      buttonClasses.push(classes.Alt);
+
     }
 
 
@@ -96,13 +85,13 @@ class App extends Component {
           <img src={logo} className={classes.AppLogo} alt="logo" />
         </header>
         <div className={classes.AppBody}>
-          <StyledButton alt={this.state.showPersons}
+          <button className={buttonClasses.join(' ')}
             onClick={this.togglePersons}>
             {toggleLabel}
-          </StyledButton>
+          </button>
           {persons}
         </div>
-        <footer class={classes.AppFooter}>
+        <footer className={classes.AppFooter}>
           <span>(c) {new Date().getFullYear()}</span>
         </footer>
 
