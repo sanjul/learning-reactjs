@@ -1,5 +1,6 @@
 import React from 'react';
 import classes from './Person.module.css';
+import PropTypes from 'prop-types';
 
 
 const person = (props) => (
@@ -9,5 +10,13 @@ const person = (props) => (
         <input onChange={props.onChange} type="text" value={props.name} />
     </div>
 );
+
+
+person.propTypes = {
+    onDelete: PropTypes.func,
+    onChange: PropTypes.func,
+    name: PropTypes.string,
+    age : PropTypes.number   
+}
 
 export default person;
