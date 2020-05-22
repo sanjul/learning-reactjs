@@ -3,6 +3,7 @@ import Persons from '../components/Persons/Persons';
 import classes from './App.module.css';
 import Cockpit from './Cockpit/Cockpit';
 import DisplayToggle from '../components/DisplayToggle/DisplayToggle';
+import AuthContext from '../context/AuthContext';
 
 
 
@@ -14,7 +15,8 @@ class App extends Component {
       { id: 'id1', name: "Lue", age: 20 },
       { id: 'id2', name: "Joy", age: 30 },
       { id: 'id3', name: "Jacob", age: 25 },
-    ]
+    ],
+    authenticated: false
   };
 
 
@@ -45,19 +47,31 @@ class App extends Component {
     this.setState({ persons: persons });
   }
 
+  loginHandler = () => {
+    this.setState({ authenticated: true });
+  }
+
 
   render() {
     return (
-      <div className={classes.App}>
-        <Cockpit>
-          <DisplayToggle objname="Persons">
-            <Persons persons={this.state.persons}
-              onDelete={this.deletePerson}
-              onChange={this.nameChangeHandler} />
-          </DisplayToggle>
 
-        </Cockpit>
-      </div>
+      <AuthContext.Provider value={{
+        authenticated: this.state.authenticated,
+        login: this.loginHandler
+      }}>
+
+        <div className={classes.App}>
+          <Cockpit>
+            <DisplayToggle objname="Persons">
+              <Persons persons={this.state.persons}
+                onDelete={this.deletePerson}
+                onChange={this.nameChangeHandler} />
+            </DisplayToggle>
+
+          </Cockpit>
+        </div>
+
+      </AuthContext.Provider>
     );
   }
 
