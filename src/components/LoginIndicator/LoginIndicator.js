@@ -3,6 +3,10 @@ import AuthContext from '../../context/AuthContext';
 
 class LoginIndicator extends Component {
 
+    componentDidUpdate(){
+        console.log("Is authenticated = " + this.context.authenticated);
+    }
+
 
     static contextType = AuthContext;
 
