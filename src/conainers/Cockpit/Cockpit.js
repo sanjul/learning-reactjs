@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import classes from './Cockpit.module.css';
 import Logo from '../../components/Logo/Logo';
 import AuthContext from '../../context/AuthContext'
+import LoginIndicator from '../../components/LoginIndicator/LoginIndicator';
 
 
 const cockpit = props => (
@@ -24,6 +25,7 @@ const cockpit = props => (
 
         <footer className={classes.Footer} key="cockpit-footer">
             <span>(c) {new Date().getFullYear()}</span>
+            <LoginIndicator/>
         </footer>
     </Fragment>
 
